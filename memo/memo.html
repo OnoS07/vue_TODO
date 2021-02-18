@@ -1,0 +1,34 @@
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>memo-app</title>
+  <style>
+    .done { text-decoration: line-through; }
+    .list-complete-item {
+        transition: all 1s;
+    }
+    .list-complete-enter, .list-complete-leave-to
+        /* .list-complete-leave-active for below version 2.1.8 */ {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    .list-complete-leave-active {
+        position: absolute;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+    <transition-group name="list-complete" tag="ul">
+        <todo-item v-for="item in items" v-bind="item" v-bind:key="item.id" v-on:delete="updateCheck"></todo-item>
+    </transition-group>
+    <p>
+        <input type="text" placeholder="TODOを入力" v-model="newItemTitle" v-on:keyup.enter="addTodo">
+    </p>
+    <button v-on:click="deleteTodo">チェック済み項目を削除</button>
+</div>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="./memo.js"></script>
+</body>
+</html>

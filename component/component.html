@@ -1,0 +1,38 @@
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>component</title>
+</head>
+<body>
+    <div id="example">
+        <my-component></my-component>
+    </div>
+
+    <div id="example2">
+        <my-component></my-component>
+    </div>
+
+    <div id="example-3">
+        <child message="I'm Child"></child>
+    </div>
+
+    <div id="example-4">
+        <input v-model="parentMsg"><br>
+        <child v-bind:my-message="parentMsg"></child>
+    </div>
+
+    <div id="example-5">
+        <todo-item v-bind="todo" v-for="todo in todos"></todo-item>
+    </div>
+    
+    <div id="counter-event-example">
+        <p>{{total}}</p>
+        <button-counter v-on:increment="incrementTotal"></button-counter>
+        <button-counter v-on:increment="incrementTotal"></button-counter>
+    </div>
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="./component.js"></script>
+</body>
+</html>

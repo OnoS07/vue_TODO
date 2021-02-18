@@ -1,0 +1,97 @@
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アニメーション</title>
+  <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+  <style>
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s
+        }
+    .fade-enter, .fade-leave-to {
+        opacity: 0
+        }
+    #demo2 p{
+        background-color: pink;
+    }
+    .bounce-enter-active{
+        animation: bounce-in .5s;
+    }
+    .bounce-leave-active{
+        animation: bounce-in .5s reverse;
+    }
+    .list-complete-item {
+        transition: all 1s;
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .list-complete-enter, .list-complete-leave-to
+        /* .list-complete-leave-active for below version 2.1.8 */ {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    .list-complete-leave-active {
+        position: absolute;
+    }
+    @keyframes bounce-in{
+        0%{
+            transform: scale(0);
+        }
+        50%{
+            transform: scale(1.5);
+        }
+        100%{
+            transform: scale(1);
+        }
+    }
+  </style>
+</head>
+<body>
+    <div id="demo">
+        <button v-on:click = "show = !show">
+            Toggle
+        </button>
+        <transition name="fade">
+            <p v-if="show">Hello!</p>
+        </transition>
+    </div>
+
+    <div id="demo2">
+        <button @click="show = !show">
+            Toggle show
+        </button>
+        <transition name="bounce">
+            <p v-if="show">Look at BOUNCE!!</p>
+        </transition>
+    </div>
+
+    <div id="demo3">
+        <button @click="show = !show">
+            Toggle render
+        </button>
+        <transition
+            name="custom-classes-transition"
+            enter-active-class="animated tada"
+            leave-active-class="animated bounceOutRight"
+        >
+        <p v-if = "show">
+            hello
+        </p>
+    </transition>
+    </div>
+
+    <div id = "list-complete-demo" class = "demo">
+        <button v-on:click="add">Add</button>
+        <button v-on:click="remove">Remove</button>
+        <transition-group name="list-complete" tag="p"> 
+            <span v-for="item in items" v-bind:key="item" class="list-complete-item">
+                {{item}}
+            </span>
+        </transition-group>
+    </div>
+
+<script src="https://unpkg.com/vue"></script>
+<script src="./animation.js"></script>
+
+</body>
+</html>
